@@ -13,7 +13,8 @@ public abstract class References {
 
     public static final String LOGIN_SUCCESSFUL = "loginSuccessful";
     public static final String LOGIN_ERROR = "loginError";
-    public static final int NUM_PAGES = 3;
+    public static final int NUM_PAGES_MAIN = 3;
+    public static final int NUM_PAGES_HOME = 4;
 
     public static final String PRUEBAS = "---PRUEBAS";
 

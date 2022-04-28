@@ -1,7 +1,7 @@
 package es.travelworld.ejercicio8_tabs;
 
 import static es.travelworld.ejercicio8_tabs.domain.References.MATCH_FRAGMENT;
-import static es.travelworld.ejercicio8_tabs.domain.References.NUM_PAGES;
+import static es.travelworld.ejercicio8_tabs.domain.References.NUM_PAGES_MAIN;
 import static es.travelworld.ejercicio8_tabs.domain.References.ON_BOARDING_FRAGMENT;
 import static es.travelworld.ejercicio8_tabs.domain.References.ROOMMATE_FRAGMENT;
 
@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
 
         FragmentStateAdapter fragmentStateAdapter = new MainActivityFragmentStateAdapter(this);
         binding.viewPager.setAdapter(fragmentStateAdapter);
+
+        Intent intent = new Intent(this,HomeActivity.class);
+        startActivity(intent);
 
     }
 
@@ -80,12 +83,16 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
         public Fragment createFragment(int position) {
             Fragment fragment = new Fragment();
 
-            if (position == 0) {
+            switch (position){
+            case 0:
                 fragment = startOnBoardingFragment();
-            } else if (position == 1) {
+                break;
+            case 1:
                 fragment = startMatchFragment();
-            } else if (position == 2) {
+                break;
+            case 2:
                 fragment = startRoommateFragment();
+                break;
             }
 
             return fragment;
@@ -93,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
 
         @Override
         public int getItemCount() {
-            return NUM_PAGES;
+            return NUM_PAGES_MAIN;
         }
 
         private Fragment startOnBoardingFragment() {

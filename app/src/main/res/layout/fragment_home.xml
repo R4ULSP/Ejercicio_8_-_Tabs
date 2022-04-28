@@ -17,7 +17,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_title_textview"
@@ -31,73 +31,79 @@
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/home_buttons_container"
+                <!--<androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100"
-                    app:layout_constraintTop_toBottomOf="@id/home_title_textview">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/home_camera_button"
-                        style="@style/home_buttons"
-                        android:layout_width="wrap_content"
+
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_buttons_container"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:backgroundTint="@color/light_blue"
-                        app:icon="@drawable/ic_camera_alt"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/home_title_textview" />
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100"
+                        app:layout_constraintTop_toBottomOf="@id/home_title_textview">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/home_favourite_button"
-                        style="@style/home_buttons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:backgroundTint="@color/light_purple"
-                        app:icon="@drawable/ic_favorite"
-                        app:layout_constraintBottom_toBottomOf="@id/home_camera_button"
-                        app:layout_constraintEnd_toStartOf="@id/home_terrain_button"
-                        app:layout_constraintStart_toEndOf="@id/home_camera_button"
-                        app:layout_constraintTop_toTopOf="@id/home_camera_button" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/home_camera_button"
+                            style="@style/home_buttons"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:backgroundTint="@color/light_blue"
+                            app:icon="@drawable/ic_camera_alt"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/home_title_textview" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/home_terrain_button"
-                        style="@style/home_buttons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:backgroundTint="@color/light_pink"
-                        app:icon="@drawable/ic_terrain"
-                        app:layout_constraintBottom_toBottomOf="@id/home_favourite_button"
-                        app:layout_constraintEnd_toStartOf="@id/home_face_button"
-                        app:layout_constraintStart_toEndOf="@id/home_favourite_button"
-                        app:layout_constraintTop_toTopOf="@id/home_favourite_button" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/home_favourite_button"
+                            style="@style/home_buttons"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:backgroundTint="@color/light_purple"
+                            app:icon="@drawable/ic_favorite"
+                            app:layout_constraintBottom_toBottomOf="@id/home_camera_button"
+                            app:layout_constraintEnd_toStartOf="@id/home_terrain_button"
+                            app:layout_constraintStart_toEndOf="@id/home_camera_button"
+                            app:layout_constraintTop_toTopOf="@id/home_camera_button" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/home_face_button"
-                        style="@style/home_buttons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:backgroundTint="@color/light_orange"
-                        app:icon="@drawable/ic_face"
-                        app:layout_constraintBottom_toBottomOf="@id/home_terrain_button"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/home_terrain_button"
-                        app:layout_constraintTop_toTopOf="@id/home_terrain_button" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/home_terrain_button"
+                            style="@style/home_buttons"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:backgroundTint="@color/light_pink"
+                            app:icon="@drawable/ic_terrain"
+                            app:layout_constraintBottom_toBottomOf="@id/home_favourite_button"
+                            app:layout_constraintEnd_toStartOf="@id/home_face_button"
+                            app:layout_constraintStart_toEndOf="@id/home_favourite_button"
+                            app:layout_constraintTop_toTopOf="@id/home_favourite_button" />
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/home_face_button"
+                            style="@style/home_buttons"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:backgroundTint="@color/light_orange"
+                            app:icon="@drawable/ic_face"
+                            app:layout_constraintBottom_toBottomOf="@id/home_terrain_button"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/home_terrain_button"
+                            app:layout_constraintTop_toTopOf="@id/home_terrain_button" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/home_buttons_container">
+                    app:layout_constraintTop_toBottomOf="@id/home_title_textview">
 
                     <com.google.android.material.card.MaterialCardView
                         style="@style/home_cards"

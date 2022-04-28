@@ -2,6 +2,7 @@ package es.travelworld.ejercicio8_tabs;
 
 import static es.travelworld.ejercicio8_tabs.domain.References.HOME_FRAGMENT;
 import static es.travelworld.ejercicio8_tabs.domain.References.KEY_USER;
+import static es.travelworld.ejercicio8_tabs.domain.References.NUM_PAGES_HOME;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,12 +10,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import es.travelworld.ejercicio8_tabs.databinding.ActivityHomeBinding;
 import es.travelworld.ejercicio8_tabs.domain.User;
 import es.travelworld.ejercicio8_tabs.fragments.HomeFragment;
+import es.travelworld.ejercicio8_tabs.fragments.OnBoardingFragment;
 import es.travelworld.ejercicio8_tabs.fragments.WipFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -28,24 +36,42 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        user = getIntent().getParcelableExtra(KEY_USER);
+        //user = getIntent().getParcelableExtra(KEY_USER);
+        user = new User();
+        user.setName("a");
+        user.setLastname("b");
+        user.setAgeGroup("c");
+        user.setPassword("d");
+
 
         setSupportActionBar(binding.toolbar);
 
-        startHomeFragment();
+        FragmentStateAdapter fragmentStateAdapter = new HomeActivityFragmentStateAdapter(this);
+        binding.homeViewPager.setAdapter(fragmentStateAdapter);
+
+        setUpTabs();
+
     }
 
-    private void startHomeFragment() {
-        HomeFragment fragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(HOME_FRAGMENT);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(binding.homeFragmentFrame.getId(),
-                        fragment != null ? fragment : HomeFragment.newInstance(user),
-                        HOME_FRAGMENT)
-                .addToBackStack(null)
-                .commitAllowingStateLoss();
+    private void setUpTabs() {
+        new TabLayoutMediator(binding.tabLayout, binding.homeViewPager, ((tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setIcon(R.drawable.ic_camera_alt);
+                    break;
+                case 1:
+                    tab.setIcon(R.drawable.ac_car);
+                    break;
+                case 2:
+                    tab.setIcon(R.drawable.ic_terrain);
+                    break;
+                case 3:
+                    tab.setIcon(R.drawable.ic_face);
+                    break;
+            }
+        })).attach();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -76,5 +102,50 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra(KEY_USER, user);
         startActivity(intent);
         finish();
+    }
+
+    private class HomeActivityFragmentStateAdapter extends FragmentStateAdapter {
+        public HomeActivityFragmentStateAdapter(HomeActivity homeActivity) {
+            super(homeActivity);
+        }
+
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            Fragment fragment = new Fragment();
+
+            switch (position) {
+                case 0:
+                    fragment = startHomeFragment();
+                    break;
+                case 1:
+                    //fragment = startHomeFragment1();
+                    break;
+                case 2:
+                    //fragment = startHomeFragment2();
+                    break;
+                case 3:
+                    //fragment = startHomeFragment3();
+                    break;
+            }
+
+            return fragment;
+        }
+
+        @Override
+        public int getItemCount() {
+            return NUM_PAGES_HOME;
+        }
+
+        private Fragment startHomeFragment() {
+            HomeFragment fragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(HOME_FRAGMENT);
+
+            if (fragment != null) {
+                return fragment;
+            } else {
+                return new HomeFragment();
+            }
+        }
     }
 }
