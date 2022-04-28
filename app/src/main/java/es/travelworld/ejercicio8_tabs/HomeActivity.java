@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -46,18 +47,24 @@ public class HomeActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        FragmentStateAdapter fragmentStateAdapter = new HomeActivityFragmentStateAdapter(this);
-        binding.homeViewPager.setAdapter(fragmentStateAdapter);
+
 
         setUpTabs();
 
     }
 
     private void setUpTabs() {
+
+        FragmentStateAdapter fragmentStateAdapter = new HomeActivityFragmentStateAdapter(this);
+        binding.homeViewPager.setAdapter(fragmentStateAdapter);
+
         new TabLayoutMediator(binding.tabLayout, binding.homeViewPager, ((tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setIcon(R.drawable.ic_camera_alt);
+                    tab.setCustomView(R.layout.tab_camera); //Set del tab personalizado
+                    //TODO: Mover las dos lineas siguientes a un listener de tabSelected par que cambie el color del icono a blanco, aplicar tambien a las otras tabs
+                    AppCompatImageView imageView = tab.getCustomView().findViewById(R.id.icon); //Localizacion del imageview
+                    imageView.setColorFilter(this.getResources().getColor(R.color.white)); //Cambio de color
                     break;
                 case 1:
                     tab.setIcon(R.drawable.ac_car);
@@ -107,6 +114,7 @@ public class HomeActivity extends AppCompatActivity {
     private class HomeActivityFragmentStateAdapter extends FragmentStateAdapter {
         public HomeActivityFragmentStateAdapter(HomeActivity homeActivity) {
             super(homeActivity);
+
         }
 
 
