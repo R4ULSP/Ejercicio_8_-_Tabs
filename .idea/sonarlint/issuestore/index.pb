@@ -44,3 +44,7 @@ P
 Papp/src/main/java/es/travelworld/ejercicio8_tabs/fragments/RoommateFragment.java,4\c\4cea8563690474bf5f3cd3d4447aa974aa510c20
 ‚
 Rapp/src/main/java/es/travelworld/ejercicio8_tabs/fragments/OnBoardingFragment.java,d\5\d5f66c51ba3829668e32646f890cb18ab67f1f72
+w
+Gapp/src/main/java/es/travelworld/ejercicio8_tabs/domain/References.java,b\1\b15cac5e9cd49a9bf909a0fc4b89418d3c4c1172
+|
+Lapp/src/main/java/es/travelworld/ejercicio8_tabs/fragments/HomeFragment.java,b\7\b792a5d530b0375bb2578de327360930af3ffee8
