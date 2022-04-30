@@ -3,6 +3,7 @@ package es.travelworld.ejercicio8_tabs;
 import static es.travelworld.ejercicio8_tabs.domain.References.HOME_FRAGMENT;
 import static es.travelworld.ejercicio8_tabs.domain.References.KEY_USER;
 import static es.travelworld.ejercicio8_tabs.domain.References.NUM_PAGES_HOME;
+import static es.travelworld.ejercicio8_tabs.domain.References.POSITION_FRAGMENT;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import java.util.Objects;
 import es.travelworld.ejercicio8_tabs.databinding.ActivityHomeBinding;
 import es.travelworld.ejercicio8_tabs.domain.User;
 import es.travelworld.ejercicio8_tabs.fragments.HomeFragment;
+import es.travelworld.ejercicio8_tabs.fragments.PositionFragment;
 import es.travelworld.ejercicio8_tabs.fragments.WipFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -39,14 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //TODO: rehabilitar la recepcion del usuario
-        //user = getIntent().getParcelableExtra(KEY_USER);
-        user = new User();
-        user.setName("a");
-        user.setLastname("b");
-        user.setAgeGroup("c");
-        user.setPassword("d");
-
+        user = getIntent().getParcelableExtra(KEY_USER);
 
         setSupportActionBar(binding.toolbar);
 
@@ -59,21 +54,21 @@ public class HomeActivity extends AppCompatActivity {
 
         setCustomTabs();
 
-        setListeners();
+        setTabsListeners();
 
         initializeIconColors();
 
-        binding.tabLayout.getTabAt(0).select();
+        Objects.requireNonNull(binding.tabLayout.getTabAt(0)).select();
     }
 
     private void initializeIconColors() {
-        setIconColorBlack(binding.tabLayout.getTabAt(0).getCustomView().findViewById(R.id.iconCamera));
-        setIconColorBlack(binding.tabLayout.getTabAt(1).getCustomView().findViewById(R.id.iconCar));
-        setIconColorBlack(binding.tabLayout.getTabAt(2).getCustomView().findViewById(R.id.iconTerrain));
-        setIconColorBlack(binding.tabLayout.getTabAt(3).getCustomView().findViewById(R.id.iconFace));
+        setIconColorBlack(Objects.requireNonNull(Objects.requireNonNull(binding.tabLayout.getTabAt(0)).getCustomView()).findViewById(R.id.iconCamera));
+        setIconColorBlack(Objects.requireNonNull(Objects.requireNonNull(binding.tabLayout.getTabAt(1)).getCustomView()).findViewById(R.id.iconCar));
+        setIconColorBlack(Objects.requireNonNull(Objects.requireNonNull(binding.tabLayout.getTabAt(2)).getCustomView()).findViewById(R.id.iconTerrain));
+        setIconColorBlack(Objects.requireNonNull(Objects.requireNonNull(binding.tabLayout.getTabAt(3)).getCustomView()).findViewById(R.id.iconFace));
     }
 
-    private void setListeners() {
+    private void setTabsListeners() {
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -95,6 +90,8 @@ public class HomeActivity extends AppCompatActivity {
                     case 3:
                         imageView = Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.iconFace); //Localizacion del imageview
                         setIconColorWhite(imageView);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -120,6 +117,8 @@ public class HomeActivity extends AppCompatActivity {
                         imageView = Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.iconFace); //Localizacion del imageview
                         setIconColorBlack(imageView);
                         break;
+                    default:
+                        break;
                 }
             }
 
@@ -144,6 +143,8 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case 3:
                     tab.setCustomView(R.layout.tab_face);
+                    break;
+                default:
                     break;
             }
         })).attach();
@@ -199,22 +200,12 @@ public class HomeActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            Fragment fragment = new Fragment();
+            Fragment fragment;
 
-            //TODO: crear contenido de las otras pestañas
-            switch (position) {
-                case 0:
-                    fragment = startHomeFragment();
-                    break;
-                case 1:
-                    //fragment = startHomeFragment1();
-                    break;
-                case 2:
-                    //fragment = startHomeFragment2();
-                    break;
-                case 3:
-                    //fragment = startHomeFragment3();
-                    break;
+            if (position == 0) {
+                fragment = startHomeFragment();
+            } else {
+                fragment = startPositionFragment(position);
             }
 
             return fragment;
@@ -231,7 +222,17 @@ public class HomeActivity extends AppCompatActivity {
             if (fragment != null) {
                 return fragment;
             } else {
-                return new HomeFragment();
+                return HomeFragment.newInstance(user);
+            }
+        }
+
+        private Fragment startPositionFragment(int position) {
+            PositionFragment positionFragment = (PositionFragment) getSupportFragmentManager().findFragmentByTag(POSITION_FRAGMENT);
+
+            if (positionFragment != null) {
+                return positionFragment;
+            } else {
+                return PositionFragment.newInstance(position);
             }
         }
     }

@@ -17,8 +17,9 @@ public class MatchFragment extends Fragment {
 
     private OnClickItemMatchFragment listener;
 
-    public interface OnClickItemMatchFragment{
+    public interface OnClickItemMatchFragment {
         void matchNextButton();
+
         void matchSkipButton();
     }
 
@@ -28,9 +29,7 @@ public class MatchFragment extends Fragment {
 
 
     public static MatchFragment newInstance() {
-        MatchFragment fragment = new MatchFragment();
-
-        return fragment;
+        return new MatchFragment();
     }
 
     @Override

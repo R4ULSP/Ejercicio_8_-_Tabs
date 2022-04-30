@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getParentFragmentManager().setFragmentResultListener(FRAGMENT_RESULT, this, (requestKey, result) -> {
-            if(result.getParcelable(KEY_USER) != null){
+            if (result.getParcelable(KEY_USER) != null) {
                 user = result.getParcelable(KEY_USER);
                 Snackbar.make(binding.getRoot(), "Nombre: " + user.getName() + "  Apellidos: " + user.getLastname() + "  Edad:" + user.getAgeGroup(), BaseTransientBottomBar.LENGTH_LONG).show();
             }

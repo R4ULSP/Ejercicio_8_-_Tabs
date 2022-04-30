@@ -26,35 +26,9 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:tabIconTint="@color/black"
         app:tabIndicatorColor="?attr/colorPrimary"
-        app:tabPaddingStart="0dp"
+        app:tabPaddingBottom="2dp"
         app:tabPaddingEnd="0dp"
-        app:tabPaddingBottom="2dp">
-
-        <!--<com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/light_blue"
-            android:icon="@drawable/ic_camera_alt" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_blue"
-            android:icon="@drawable/ac_car" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_blue"
-            android:icon="@drawable/ic_terrain" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_blue"
-            android:icon="@drawable/ic_face" />-->
-
-    </com.google.android.material.tabs.TabLayout>
+        app:tabPaddingStart="0dp" />
 
 
     <androidx.viewpager2.widget.ViewPager2

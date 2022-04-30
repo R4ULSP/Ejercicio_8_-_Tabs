@@ -28,9 +28,7 @@ public class OnBoardingFragment extends Fragment {
 
 
     public static OnBoardingFragment newInstance() {
-        OnBoardingFragment fragment = new OnBoardingFragment();
-
-        return fragment;
+        return new OnBoardingFragment();
     }
 
     @Override

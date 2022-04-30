@@ -17,7 +17,7 @@ public class RoommateFragment extends Fragment {
 
     private OnClickItemRoommateFragment listener;
 
-    public interface OnClickItemRoommateFragment{
+    public interface OnClickItemRoommateFragment {
         void roommateLoginButton();
     }
 
@@ -27,9 +27,8 @@ public class RoommateFragment extends Fragment {
 
 
     public static RoommateFragment newInstance() {
-        RoommateFragment fragment = new RoommateFragment();
 
-        return fragment;
+        return new RoommateFragment();
     }
 
     @Override

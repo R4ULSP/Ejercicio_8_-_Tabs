@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
 
         FragmentStateAdapter fragmentStateAdapter = new MainActivityFragmentStateAdapter(this);
         binding.viewPager.setAdapter(fragmentStateAdapter);
-
-        Intent intent = new Intent(this,HomeActivity.class);
-        startActivity(intent);
-
     }
 
     @Override
@@ -68,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
     }
 
     private void launchLoginActivity() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -83,18 +79,19 @@ public class MainActivity extends AppCompatActivity implements OnBoardingFragmen
         public Fragment createFragment(int position) {
             Fragment fragment = new Fragment();
 
-            switch (position){
-            case 0:
-                fragment = startOnBoardingFragment();
-                break;
-            case 1:
-                fragment = startMatchFragment();
-                break;
-            case 2:
-                fragment = startRoommateFragment();
-                break;
+            switch (position) {
+                case 0:
+                    fragment = startOnBoardingFragment();
+                    break;
+                case 1:
+                    fragment = startMatchFragment();
+                    break;
+                case 2:
+                    fragment = startRoommateFragment();
+                    break;
+                default:
+                    break;
             }
-
             return fragment;
         }
 
